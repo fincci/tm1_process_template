@@ -29,7 +29,7 @@
 
 #Region Subset MDX
 	sDimMeasure = '0X_Dimension';
-	sMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL([0X_Dimension].[0X_Dimension]), 0)}';
+	sMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDimMeasure|'].['|sDimMeasure|']), 0)}';
 	SubsetCreate( sDimMeasure, sSubset, nDestroySubset );
 	SubsetMDXSet( sDimMeasure, sSubset , sMDX );
 	SubsetMDXSet( sDimMeasure, sSubset , '' );
