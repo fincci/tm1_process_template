@@ -48,6 +48,7 @@
 	ViewExtractSkipCalcsSet( sCubeSrc, sView, nSkipCalcs );
 	ViewExtractSkipZeroesSet( sCubeSrc, sView, nSuppressZeroes );
 	DatasourceCubeview = sView;
+	DatasourceASCIIQuoteCharacter='';
 #EndRegion View create
 
 #Section Metadata
