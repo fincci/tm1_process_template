@@ -1,6 +1,4 @@
 #Section Prolog
-#****Begin: Generated Statements***
-#****End: Generated Statements****
 
 #Region Get Username
     sClient = TM1User();
@@ -52,13 +50,7 @@
 #EndRegion View create
 
 #Section Metadata
-#****Begin: Generated Statements***
-#****End: Generated Statements****
 
 #Section Data
-#****Begin: Generated Statements***
-#****End: Generated Statements****
 
 #Section Epilog
-#****Begin: Generated Statements***
-#****End: Generated Statements****
