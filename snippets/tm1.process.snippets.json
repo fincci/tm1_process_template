@@ -1011,7 +1011,7 @@
     },
     "ItemSkip": {
         "prefix": "ItemSkip",
-        "body": "ItemSkip();;",
+        "body": "ItemSkip();",
         "description": "ItemSkip forces a process to skip the current data source item."
     },
     "LogOutput": {
