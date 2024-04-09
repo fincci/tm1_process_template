@@ -209,6 +209,11 @@
         "body": "ELCOMPN( ${1:sDimName}, ${2:sParentElemID} )",
         "description": "ELCOMPN returns the number of components in a specified element. If the element argument is not a consolidated element, the function returns 0."
     },
+    "ElementAttributes": {
+        "prefix": "ElementAttributes",
+        "body": "}ElementAttributes_${1:ObjectName}",
+        "description": "Snippet to reference a control object."
+    },
     "ElementComponent": {
         "prefix": "ElementComponent",
         "body": "ElementComponent( ${1:sDimName}, ${2:sHierName}, ${3:sParentElemID}, ${4:nPosition} )",

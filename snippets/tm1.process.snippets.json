@@ -629,6 +629,11 @@
         "body": "ElementAttrDelete( ${1:sDimName}, ${2:sHierName}, ${3:sAttrName} );",
         "description": "ElementAttrDelete deletes an element attribute from the TM1 database."
     },
+    "ElementAttributes": {
+        "prefix": "ElementAttributes",
+        "body": "}ElementAttributes_${1:ObjectName}",
+        "description": "Snippet to reference a control object."
+    },
     "ElementAttrInsert": {
         "prefix": "ElementAttrInsert",
         "body": "ElementAttrInsert( ${1:sDimName}, ${2:sHierName}, ${3:sPrevAttr}, ${4:sAttrName}, ${5:sType} );",
@@ -1636,7 +1641,7 @@
     },
     "While": {
         "prefix": "While",
-        "body": "While( ${1:Condition} );",
+        "body": ["WHILE( ${1:Condition} );","END;"],
         "description": "The While statement allows a process to repeat a series of statements while a given condition is true. While statements can be nested."
     },
     "WildcardFileSearch": {
