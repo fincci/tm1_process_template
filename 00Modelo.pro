@@ -8,14 +8,13 @@
 #EndRegion Get Username
 
 #Region General Statements
-	sCubeSrc = 'Sorce_Cube';
+	sCubeSrc = 'Source_Cube';
+	sDimSrc = 'Source_Dim';
 	sCubeTgt = 'Target_Cube';
-	sCubeAux = 'Aux_Cube';
+	sDimTgt = 'Target_Dim';
 	cProcess = GetProcessName();
 	sView = cProcess|'_View';
 	sSubset = cProcess|'_Subset';
-	# sView = cProcess|'_'|sUser|'_View';
-	# sSubset = cProcess|'_'|sUser|'_Subset';
 #EndRegion General Statements
 
 #Region Views
@@ -29,10 +28,10 @@
 		#Region Subset MDX
 			sDimMeasure = '0X_Dimension';
 			sDim = sDimMeasure;
-			sMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDim|'].['|sDim|']), 0)}';
 			IF( SubsetExists( sDim, sSubset ) = 1 );
 				SubsetDestroy( sDim, sSubset );
 			ENDIF;
+			sMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDim|'].['|sDim|']), 0)}';
 			SubsetCreate( sDim, sSubset, nDestroySubset );
 			SubsetMDXSet( sDim, sSubset , sMDX );
 			SubsetMDXSet( sDim, sSubset , '' );

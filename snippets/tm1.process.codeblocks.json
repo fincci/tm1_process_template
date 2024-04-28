@@ -28,11 +28,7 @@
 			"#==============================================================================",
 			"sProcessName = GetProcessName();",
 			"sTimeStamp = TIMST( NOW, '\\Y-\\m-\\d(\\h\\i\\s)' );",
-<<<<<<< HEAD
-			"sTempName = Expand( '_tmp_%sProcessName%_%sTimeStamp% ') | NumbertoString(RAND());",
-=======
 			"sTempName = '_tmp_' | sProcessName | '_' | sTimeStamp;",
->>>>>>> 6cb98c78f8bdd4463f8c70167342804b9738ccd9
 			"",
 			"sLogPath = '..\\Logs\\';",
 			"sLogFile = sLogPath | sTempName | '.log';",
@@ -52,7 +48,6 @@
 			"#=============================================================================="
 		]
 	},
-
 	"Medium Code Block": {
 		"prefix": "xMedium Code Block",
 		"description": "",
@@ -62,7 +57,6 @@
 			"#--------------------------------------------------------------------------"
 		]
 	},
-
 	"Large Code Block ": {
 		"prefix": "xLarge Code Block",
 		"description": "",
@@ -72,7 +66,6 @@
 			"#=============================================================================="
 		]
 	},
-
 	"Add New Element With Parent": {
 		"prefix": "xAdd New Element With Parent",
 		"description": "Add new element to dimension and only add parent if it doesn't already exist.  (TM1=Master).",
@@ -89,7 +82,6 @@
 			"EndIf;"
 		]
 	},
-
 	"Add New Element Force Parent": {
 		"prefix": "xAdd New Element Force Parent",
 		"description": "Add new element to dimension and force child to reside under parent.  (DataFile=Master)",
@@ -106,7 +98,6 @@
 			"DimensionElementComponentAdd( sDimName, sParentElemID, sChildElemID, 1 );"
 		]
 	},
-
 	"Loop Dimension Elements": {
 		"prefix": "xLoop Dimension Elements",
 		"description": "Loop through all of the elements within a dimension. (not safe for element deletes)",
@@ -124,7 +115,6 @@
 			"End;"
 		]
 	},
-
 	"Loop Dimension Elements Reverse": {
 		"prefix": "xLoop Dimension Elements",
 		"description": "Loop through all of the elements within a dimension. (not safe for element deletes)",
@@ -142,7 +132,6 @@
 			"End;"
 		]
 	},
-
 	"Loop Subset Elements": {
 		"prefix": "xLoop Subset Elements",
 		"description": "Loop through all of the elements within a subset",
@@ -162,7 +151,6 @@
 			"END;"
 		]
 	},
-
 	"Loop Child Elements": {
 		"prefix": "xLoop Child Elements",
 		"description": "Loop through all of the children within a parent element",
@@ -180,7 +168,6 @@
 			"End;"
 		]
 	},
-
 	"Loop Child Elements Reverse": {
 		"prefix": "xLoop Child Elements Reverse",
 		"description": "Loop through all of the elements within a parent in reverse order. (safe for element deletes)",
@@ -198,7 +185,6 @@
 			"End;"
 		]
 	},
-
 	"Set TextFile Datasource": {
 		"prefix": "xSet TextFile Datasource",
 		"description": "Set a Text File as a process data source",
@@ -209,7 +195,6 @@
 			"DataSourceNameForServer =  ${1:sFileName};"
 		]
 	},
-
 	"Set ODBC Datasource": {
 		"prefix": "xSet ODBC Datasource",
 		"description": "Set an ODBC as a process data source",
@@ -222,7 +207,6 @@
 			"DatasourceQuery =  ${4:sQuery};"
 		]
 	},
-
 	"Set View Datasource": {
 		"prefix": "xSet View Datasource",
 		"description": "Set a TM1 cube view as a process data source",
@@ -233,7 +217,6 @@
 			"DataSourceCubeView =  ${2:cViewName};"
 		]
 	},
-
 	"Set Subset Datasource": {
 		"prefix": "xSet Subset Datasource",
 		"description": "Set a Subset as a process data source",
@@ -244,15 +227,83 @@
 			"DatasourceDimensionSubset =  ${2:sSubsetName};"
 		]
 	},
-
-	"Set View Datasource": {
-		"prefix": "xSet View Datasource",
-		"description": "Set a TM1 cube view as a process data source",
+	"Get Username": {
+		"prefix": "xGet Username",
+		"description": "Get username name without prefix",
 		"body": [
-			"# --- Set the Data Source",
-			"DataSourceType = 'View';",
-			"DataSourceNameForServer =  ${1:cSourceCubeName};",
-			"DataSourceCubeView =  ${2:cViewName};"
+			"#Region Get Username",
+			"\tsClient = TM1User();",
+			"\tsUserDesc = CellGetS( '}ElementAttributes_}Clients', sClient, '}TM1_DefaultDisplayValue' );",
+			"\tnIndexStringUser = SCAN( '/', sUserDesc );",
+			"\tsUser = SUBST( sUserDesc, nIndexStringUser + 1, LONG( sUserDesc ) - nIndexStringUser );",
+			"#EndRegion Get Username"
+		]
+	},
+	"General Statements": {
+		"prefix": "xGeneral Statements",
+		"description": "Declare some default general statements",
+		"body": [
+			"#Region General Statements",
+			"\tsCubeSrc = 'Source_Cube';",
+			"\tsDimSrc = 'Source_Dim';",
+			"\tsCubeTgt = 'Target_Cube';",
+			"\tsDimTgt = 'Target_Dim';",
+			"\tcProcess = GetProcessName();",
+			"\tsView = cProcess|'_View';",
+			"\tsSubset = cProcess|'_Subset';",
+			"#EndRegion General Statements"
+		]
+	},
+	"View Variables": {
+		"prefix": "xView Variables",
+		"description": "Declare some view variables",
+		"body": [
+			"#Region View variables",
+			"\tnDestroySubset = ${1:1};",
+			"\tnDestroyView = ${2:1};",
+			"\tnSkipCalcs = ${3:1};",
+			"\tnSuppressZeroes = ${4:1};",
+			"#EndRegion View variables"
+		]
+	},
+	"Subset Create by MDX": {
+		"prefix": "xSubset Create by MDX",
+		"description": "Create a subet by MDX",
+		"body": [
+			"#Region ${1:Dimension Alias} Subset MDX",
+			"\t${2:Dimension variable} = '${3:Dimension name}';",
+			"\tsDim = {2:Dimension variable};",
+			"\tIF( SubsetExists( sDim, sSubset ) = 1 );",
+			"\t\tSubsetDestroy( sDim, sSubset );",
+			"\tENDIF;",
+			"\tsMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDim|'].['|sDim|']), 0)}';",
+			"\tSubsetCreate( sDim, sSubset, nDestroySubset );",
+			"\tSubsetMDXSet( sDim, sSubset , sMDX );",
+			"\tSubsetMDXSet( sDim, sSubset , '' );",
+			"#EndRegion ${1:Dimension Alias} Subset MDX"
+		]
+	},
+	"View Create by Subsets": {
+		"prefix": "xView Create by Subsets",
+		"description": "Create a view by subsets",
+		"body": [
+			"#Region View create",
+			"\tViewCreate( sCubeSrc, sView, nDestroyView );",
+			"\tViewSubsetAssign( sCubeSrc, sView, sDimMeasure, sSubset );",
+			"\tViewExtractSkipCalcsSet( sCubeSrc, sView, nSkipCalcs );",
+			"\tViewExtractSkipZeroesSet( sCubeSrc, sView, nSuppressZeroes );",
+			"\tDatasourceCubeview = sView;",
+			"#EndRegion View create"
+		]
+	},
+	"Section Delimiter": {
+		"prefix": "xSection delimiter",
+		"description": "Create every section of processes in a blank file",
+		"body": [
+			"#Section Prolog\n",
+			"#Section Metadata\n",
+			"#Section Data\n",
+			"#Section Epilog\n"
 		]
 	}
 }

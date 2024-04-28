@@ -538,5 +538,10 @@
         "prefix": "UPPER",
         "body": "UPPER( ${1:sString} )",
         "description": "UPPER converts a text string to upper case."
+    },
+    "Region": {
+        "prefix": "Region",
+        "body": ["#Region ${1:Region name}","#EndRegion ${1:Region name}"],
+        "description": "UPPER converts a text string to upper case."
     }
 }
