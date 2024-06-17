@@ -232,10 +232,10 @@
 		"description": "Get username name without prefix",
 		"body": [
 			"#Region Get Username",
-			"\tsClient = TM1User();",
-			"\tsUserDesc = CellGetS( '}ElementAttributes_}Clients', sClient, '}TM1_DefaultDisplayValue' );",
-			"\tnIndexStringUser = SCAN( '/', sUserDesc );",
-			"\tsUser = SUBST( sUserDesc, nIndexStringUser + 1, LONG( sUserDesc ) - nIndexStringUser );",
+				"\tsClient = TM1User();",
+				"\tsUserDesc = CellGetS( '}ElementAttributes_}Clients', sClient, '}TM1_DefaultDisplayValue' );",
+				"\tnIndexStringUser = SCAN( '/', sUserDesc );",
+				"\tsUser = SUBST( sUserDesc, nIndexStringUser + 1, LONG( sUserDesc ) - nIndexStringUser );",
 			"#EndRegion Get Username"
 		]
 	},
@@ -244,13 +244,11 @@
 		"description": "Declare some default general statements",
 		"body": [
 			"#Region General Statements",
-			"\tsCubeSrc = 'Source_Cube';",
-			"\tsDimSrc = 'Source_Dim';",
-			"\tsCubeTgt = 'Target_Cube';",
-			"\tsDimTgt = 'Target_Dim';",
-			"\tcProcess = GetProcessName();",
-			"\tsView = cProcess|'_View';",
-			"\tsSubset = cProcess|'_Subset';",
+				"\tsCubeSrc = '${1:SourceCube}';",
+				"\tsDimSrc = '${2:SourceDim}';",
+				"\tsCubeTgt = '${3:TargetCube}';",
+				"\tsDimTgt = '${4:TargetDim}';",
+				"\tcProcess = GetProcessName();",
 			"#EndRegion General Statements"
 		]
 	},
@@ -259,10 +257,10 @@
 		"description": "Declare some view variables",
 		"body": [
 			"#Region View variables",
-			"\tnDestroySubset = ${1:1};",
-			"\tnDestroyView = ${2:1};",
-			"\tnSkipCalcs = ${3:1};",
-			"\tnSuppressZeroes = ${4:1};",
+				"\tnDestroySubset = ${1:1};",
+				"\tnDestroyView = ${2:1};",
+				"\tnSkipCalcs = ${3:1};",
+				"\tnSuppressZeroes = ${4:1};",
 			"#EndRegion View variables"
 		]
 	},
@@ -271,28 +269,28 @@
 		"description": "Create a subet by MDX",
 		"body": [
 			"#Region ${1:Dimension Alias} Subset MDX",
-			"\t${2:Dimension variable} = '${3:Dimension name}';",
-			"\tsDim = {2:Dimension variable};",
-			"\tIF( SubsetExists( sDim, sSubset ) = 1 );",
-			"\t\tSubsetDestroy( sDim, sSubset );",
-			"\tENDIF;",
-			"\tsMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDim|'].['|sDim|']), 0)}';",
-			"\tSubsetCreate( sDim, sSubset, nDestroySubset );",
-			"\tSubsetMDXSet( sDim, sSubset , sMDX );",
-			"\tSubsetMDXSet( sDim, sSubset , '' );",
+				"\t${2:Dimension variable} = '${3:Dimension name}';",
+				"\tsDim = ${2:Dimension variable};",
+				"\tIF( SubsetExists( sDim, sSubset ) = 1 );",
+					"\t\tSubsetDestroy( sDim, sSubset );",
+				"\tENDIF;",
+				"\tsMDX = '{TM1FILTERBYLEVEL(TM1SUBSETALL(['|sDim|'].['|sDim|']), 0)}';",
+				"\tSubsetCreate( sDim, sSubset, nDestroySubset );",
+				"\tSubsetMDXSet( sDim, sSubset , sMDX );",
+				"\tSubsetMDXSet( sDim, sSubset , '' );",
 			"#EndRegion ${1:Dimension Alias} Subset MDX"
 		]
 	},
-	"View Create by Subsets": {
-		"prefix": "xView Create by Subsets",
-		"description": "Create a view by subsets",
+	"View Create by Subsets Assign": {
+		"prefix": "xView Create by Subsets Assign",
+		"description": "User subset assign to create a view",
 		"body": [
 			"#Region View create",
-			"\tViewCreate( sCubeSrc, sView, nDestroyView );",
-			"\tViewSubsetAssign( sCubeSrc, sView, sDimMeasure, sSubset );",
-			"\tViewExtractSkipCalcsSet( sCubeSrc, sView, nSkipCalcs );",
-			"\tViewExtractSkipZeroesSet( sCubeSrc, sView, nSuppressZeroes );",
-			"\tDatasourceCubeview = sView;",
+				"\tViewCreate( sCubeSrc, sView, nDestroyView );",
+				"\tViewSubsetAssign( sCubeSrc, sView, sDimMeasure, sSubset );",
+				"\tViewExtractSkipCalcsSet( sCubeSrc, sView, nSkipCalcs );",
+				"\tViewExtractSkipZeroesSet( sCubeSrc, sView, nSuppressZeroes );",
+				"\tDatasourceCubeview = sView;",
 			"#EndRegion View create"
 		]
 	},
