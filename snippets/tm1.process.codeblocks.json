@@ -266,7 +266,7 @@
 	},
 	"Subset Create by MDX": {
 		"prefix": "xSubset Create by MDX",
-		"description": "Create a subet by MDX",
+		"description": "Create subet by MDX",
 		"body": [
 			"#Region ${1:Dimension Alias} Subset MDX",
 				"\t${2:Dimension variable} = '${3:Dimension name}';",
@@ -279,6 +279,22 @@
 				"\tSubsetMDXSet( sDim, sSubset , sMDX );",
 				"\tSubsetMDXSet( sDim, sSubset , '' );",
 			"#EndRegion ${1:Dimension Alias} Subset MDX"
+		]
+	},
+	"Subset Create by Element":{
+		"prefix":"xSubset create by element",
+		"description": "Create subset by element insert",
+		"body":[
+			"#Region ${1:Dimension Alias} subset element",
+				"\t${2:Dimension variable} = '${4:Dimension name}';",
+				"\tsDim = ${2:Dimension variable};",
+				"\tsElement = '${5:Element}';",
+				"\tIF( SubsetExists( sDim, sSubset ) = 1 );",
+					"\t\tSubsetDestroy( sDim, sSubset );",
+				"\tENDIF;",
+				"\tSubsetCreate( sDim, sSubset );",
+				"\tSubsetElementInsert( sDim, sSubset, sElement, 1 );",
+			"#EndRegion ${1:Dimension Alias} subset element"
 		]
 	},
 	"View Create by Subsets Assign": {

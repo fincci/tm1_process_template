@@ -1001,6 +1001,11 @@
     },
     "If": {
         "prefix": "If",
+        "body": ["IF(${1:Expression});","ENDIF;"],
+        "description": "The If statement allows a process to execute a statement or series of statements when a given expression is true. You can use arithmetic operators"
+    },
+    "Ifelse": {
+        "prefix": "Ifelse",
         "body": ["IF(${1:Expression});","ELSE;","ENDIF;"],
         "description": "The If statement allows a process to execute a statement or series of statements when a given expression is true. You can use arithmetic operators"
     },
@@ -2151,37 +2156,37 @@
     },
     "FILL": {
         "prefix": "FILL",
-        "body": "FILL( ${1:sFiller}, ${2:nLength} );",
+        "body": "FILL(${1:sFiller}, ${2:nLength});",
         "description": "FILL repeats a given string as necessary to return a string of a specified length."
     },
     "INSRT": {
         "prefix": "INSRT",
-        "body": "INSRT( ${1:sStringToInsert}, ${2:sBaseString}, ${3:nLocation} );",
+        "body": "INSRT(${1:sStringToInsert}, ${2:sBaseString}, ${3:nLocation});",
         "description": "INSRT inserts one string into another string at a specified insertion point."
     },
     "LONG": {
         "prefix": "LONG",
-        "body": "LONG( ${1:sString} );",
+        "body": "LONG(${1:sString});",
         "description": "LONG returns the length of a string."
     },
     "LOWER": {
         "prefix": "LOWER",
-        "body": "LOWER( ${1:sString} );",
+        "body": "LOWER(${1:sString});",
         "description": "LOWER converts all upper case characters in a string to lower case."
     },
     "NUMBR": {
         "prefix": "NUMBR",
-        "body": "NUMBR( ${1:sString} );",
+        "body": "NUMBR(${1:sString});",
         "description": "NUMBR converts a string to a number. The string passed to the NUMBR function must use. (period) as the decimal separator and , (comma) as the thousand separator. Any other decimal/thousand separators will cause incorrect results."
     },
     "SCAN": {
         "prefix": "SCAN",
-        "body": "SCAN( ${1:sFindString}, ${2:sWithinString} );",
+        "body": "SCAN(${1:sFindString}, ${2:sWithinString});",
         "description": "SCAN returns a number indicating the starting location of the first occurrence of a specified substring within a string. If the substring does not occur in the given string, the function returns 0."
     },
     "STR": {
         "prefix": "STR",
-        "body": "STR( ${1:nNumber}, ${2:nTotalLength}, ${3:nDecimalPlaces} );",
+        "body": "STR(${1:nNumber}, ${2:nTotalLength}, ${3:nDecimalPlaces});",
         "description": "STR converts a number to a string."
     },
     "SUBST": {
@@ -2191,12 +2196,12 @@
     },
     "TRIM": {
         "prefix": "TRIM",
-        "body": "TRIM( ${1:sString} );",
+        "body": "TRIM(${1:sString});",
         "description": "TRIM returns the result of trimming any leading and trailing blanks from a string."
     },
     "UPPER": {
         "prefix": "UPPER",
-        "body": "UPPER( ${1:sString} );",
+        "body": "UPPER(${1:sString});",
         "description": "UPPER converts a text string to upper case."
     },
     "Region": {
@@ -2206,7 +2211,7 @@
     },
     "ReturnViewHandle": {
         "prefix": "ReturnViewHandle",
-        "body": "ReturnViewHandle( ${1:sCube}, ${2:sViewName} );",
+        "body": "ReturnViewHandle(${1:sCube}, ${2:sViewName});",
         "description": "UPPER converts a text string to upper case."
     }
 }
